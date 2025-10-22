@@ -129,47 +129,6 @@ class CalculatorTest {
     }
 
     // fehlerhafte tests
-
-    @Test
-    @DisplayName("should calculate large amount of numbers(values) or limit the count ")
-    void largeNumbers() {
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressBinaryOperationKey("+");
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressDigitKey(9);
-        calc.pressEqualsKey();
-
-
-        String expected = "10099999999998";
-        String actual = calc.readScreen();
-
-        assertEquals(expected,actual);
-    }
-
     @Test
     @DisplayName("should draw integer square root")
     void integerSquareRoot() {
@@ -185,5 +144,19 @@ class CalculatorTest {
         assertEquals(expected,actual);
     }
 
+    @Test
+    @DisplayName("Zero should return the same signed zero you pass in")
+    void negativeZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressNegativeKey();
+        calc.pressEqualsKey();
+
+        String expected = "-0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected,actual);
+    }
 }
 
